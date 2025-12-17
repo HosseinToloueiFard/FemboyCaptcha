@@ -1,0 +1,130 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>test</title>
+  <style>
+    body {
+      margin: 0;
+      background: #ffffff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }.wrapper {
+  width: 100%;
+  max-width: 360px;
+  padding: 12px;
+}
+
+.hint {
+  font-size: 14px;
+  color: #000;
+  margin-bottom: 8px;
+}
+
+.captcha-box {
+  border: 1px solid #dcdcdc;
+  border-radius: 4px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.checkbox {
+  width: 28px;
+  height: 28px;
+  border: 2px solid #c1c1c1;
+  border-radius: 2px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.checkbox.loading {
+  cursor: default;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #ccc;
+  border-top: 2px solid #555;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.label {
+  font-size: 15px;
+  color: #000;
+}
+
+.right {
+  text-align: right;
+  font-size: 10px;
+  color: #777;
+}
+
+.right img {
+  width: 42px;
+  display: block;
+  margin-left: auto;
+  margin-bottom: 4px;
+}
+
+.links {
+  line-height: 1.2;
+}
+
+.links span {
+  color: #777;
+}
+
+  </style>
+</head>
+<body><div class="wrapper">
+  <div class="hint">Please check the box below to proceed.</div>  <div class="captcha-box">
+    <div class="left">
+      <div class="checkbox" id="box"></div>
+      <div class="label">I'm not a femboy</div>
+    </div><div class="right">
+  <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" alt="reCAPTCHA" />
+  <div class="links">
+    <span>Privacy</span> - <span>Terms</span>
+  </div>
+</div>
+
+  </div>
+</div><script>
+  const box = document.getElementById('box');
+  let done = false;
+
+  box.addEventListener('click', () => {
+    if (done || box.classList.contains('loading')) return;
+
+    box.classList.add('loading');
+    box.innerHTML = '<div class="spinner"></div>';
+
+    setTimeout(() => {
+      box.classList.remove('loading');
+      box.innerHTML = '❌';
+      done = true;
+    }, 1800);
+  });
+</script></body>
+</html>
